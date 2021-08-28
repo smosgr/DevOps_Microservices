@@ -1,18 +1,15 @@
 FROM python:3.7.3-stretch
 
-## Step 1:
-# Create a working directory
+## Complete Step 1:
+WORKDIR /app
 
-## Step 2:
-# Copy source code to working directory
+## Complete Step 2:
+COPY * ./app/
 
-## Step 3:
-# Install packages from requirements.txt
-# hadolint ignore=DL3013
+## Complete Step 3:
+RUN pip freeze > requirements.txt && pip install -r requirements.txt
+## Complete Step 4:
+EXPOSE 80
 
-## Step 4:
-# Expose port 80
-
-## Step 5:
-# Run app.py at container launch
-
+## Complete Step 5:
+CMD [ "python", "./app.py" ]
